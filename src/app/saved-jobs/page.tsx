@@ -5,6 +5,7 @@ import JobList from '@/components/jobs/job-list';
 import { useJobs } from '@/context/JobContext';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import Footer from '@/components/layout/footer';
 
 export default function SavedJobsPage() {
   const { savedJobs, handleSaveToggle, handleJobApply, handleJobPost } = useJobs();
@@ -33,6 +34,7 @@ export default function SavedJobsPage() {
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 }

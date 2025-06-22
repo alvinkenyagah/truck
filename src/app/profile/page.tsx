@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -186,6 +187,7 @@ export default function ProfilePage() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

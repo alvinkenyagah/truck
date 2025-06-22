@@ -5,6 +5,7 @@ import { useJobs } from '@/context/JobContext';
 import Header from '@/components/layout/header';
 import JobSearchFilters from '@/components/jobs/job-search-filters';
 import JobList from '@/components/jobs/job-list';
+import Footer from '@/components/layout/footer';
 
 export default function Home() {
   const { jobs, handleSaveToggle, handleJobPost, handleJobApply } = useJobs();
@@ -35,6 +36,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
