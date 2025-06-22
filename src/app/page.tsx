@@ -6,6 +6,7 @@ import Header from '@/components/layout/header';
 import JobSearchFilters from '@/components/jobs/job-search-filters';
 import JobList from '@/components/jobs/job-list';
 import { useToast } from "@/hooks/use-toast"
+import type { ApplicationFormValues } from '@/components/jobs/apply-job-dialog';
 
 
 const initialJobs: Job[] = [
@@ -119,6 +120,24 @@ export default function Home() {
       })
   };
 
+  const handleJobApply = (jobId: string, application: ApplicationFormValues) => {
+    let jobTitle = '';
+    const updatedJobs = jobs.map((job) => {
+      if (job.id === jobId) {
+        jobTitle = job.title;
+        return { ...job, isSaved: true };
+      }
+      return job;
+    });
+    setJobs(updatedJobs);
+
+    toast({
+      title: "Application Sent!",
+      description: `Your application for ${jobTitle} has been submitted. The job has been saved.`,
+    });
+    console.log('Application submitted for job:', jobId, 'with data:', application);
+  };
+
   const filteredJobs = jobs.filter((job) => {
     return (
       job.location.toLowerCase().includes(filters.location.toLowerCase()) &&
@@ -136,7 +155,7 @@ export default function Home() {
             <JobSearchFilters filters={filters} onFilterChange={setFilters} />
           </aside>
           <div className="lg:col-span-8 xl:col-span-9">
-            <JobList jobs={filteredJobs} onSaveToggle={handleSaveToggle} />
+            <JobList jobs={filteredJobs} onSaveToggle={handleSaveToggle} onApply={handleJobApply} />
           </div>
         </div>
       </main>

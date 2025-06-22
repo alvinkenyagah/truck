@@ -9,13 +9,16 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Bookmark, MapPin, DollarSign, Briefcase, Route } from 'lucide-react';
+import ApplyJobDialog from './apply-job-dialog';
+import type { ApplicationFormValues } from './apply-job-dialog';
 
 type JobCardProps = {
   job: Job;
   onSaveToggle: (id: string) => void;
+  onApply: (jobId: string, application: ApplicationFormValues) => void;
 };
 
-export default function JobCard({ job, onSaveToggle }: JobCardProps) {
+export default function JobCard({ job, onSaveToggle, onApply }: JobCardProps) {
   return (
     <Card className="hover:shadow-lg transition-shadow duration-300 flex flex-col">
       <CardHeader>
@@ -61,7 +64,9 @@ export default function JobCard({ job, onSaveToggle }: JobCardProps) {
         </div>
       </CardContent>
       <CardFooter className="flex justify-end">
-        <Button>Apply Now</Button>
+        <ApplyJobDialog job={job} onApply={onApply}>
+          <Button>Apply Now</Button>
+        </ApplyJobDialog>
       </CardFooter>
     </Card>
   );

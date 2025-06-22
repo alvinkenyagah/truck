@@ -1,12 +1,14 @@
 import type { Job } from '@/lib/types';
 import JobCard from './job-card';
+import type { ApplicationFormValues } from './apply-job-dialog';
 
 type JobListProps = {
   jobs: Job[];
   onSaveToggle: (id: string) => void;
+  onApply: (jobId: string, application: ApplicationFormValues) => void;
 };
 
-export default function JobList({ jobs, onSaveToggle }: JobListProps) {
+export default function JobList({ jobs, onSaveToggle, onApply }: JobListProps) {
   if (jobs.length === 0) {
     return (
       <div className="text-center py-16 bg-card rounded-lg shadow-sm">
@@ -21,7 +23,7 @@ export default function JobList({ jobs, onSaveToggle }: JobListProps) {
   return (
     <div className="space-y-4">
       {jobs.map((job) => (
-        <JobCard key={job.id} job={job} onSaveToggle={onSaveToggle} />
+        <JobCard key={job.id} job={job} onSaveToggle={onSaveToggle} onApply={onApply} />
       ))}
     </div>
   );
