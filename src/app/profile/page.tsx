@@ -24,7 +24,8 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Form, FormControl, FormField, FormItem, FormMessage, FormLabel } from '@/components/ui/form';
-import type { User, Job } from '@/lib/types';
+import type { User } from '@/lib/types';
+import { useJobs } from '@/context/JobContext';
 
 const profileSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -45,6 +46,7 @@ const mockUser: User = {
 export default function ProfilePage() {
   const [user, setUser] = useState<User>(mockUser);
   const { toast } = useToast();
+  const { handleJobPost } = useJobs();
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
@@ -75,11 +77,6 @@ export default function ProfilePage() {
     // For this prototype, we'll reset the state.
     setUser({ id: '', name: 'Deleted User', email: '' });
     form.reset({ name: '', email: '', bio: '' });
-  };
-  
-  // Dummy handler for the Header component prop
-  const handleJobPost = (newJob: Omit<Job, 'id' | 'isSaved'>) => {
-    // This functionality is not needed on the profile page.
   };
 
   return (

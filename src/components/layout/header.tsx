@@ -3,7 +3,7 @@ import type { Job } from '@/lib/types';
 import { Truck } from 'lucide-react';
 import Link from 'next/link';
 import PostJobDialog from '@/components/jobs/post-job-dialog';
-import { Button } from '@/components/ui/button';
+import UserNav from './user-nav';
 
 
 type HeaderProps = {
@@ -23,12 +23,7 @@ export default function Header({ onJobPost }: HeaderProps) {
           </Link>
           <nav className="flex items-center gap-2 sm:gap-4">
             <PostJobDialog onJobPost={onJobPost} />
-             <Button asChild variant="outline">
-                <Link href="/auth/signin">Sign In</Link>
-            </Button>
-            <Button asChild>
-                <Link href="/auth/signup">Sign Up</Link>
-            </Button>
+            <UserNav />
           </nav>
         </div>
       </div>
